@@ -70,6 +70,8 @@ let err fmt =
 let err_leaf = err "%a: cannot insert nodes in value position" pp_code
 let err_node = err "%a: cannot insert values in intermediate nodes" pp_code
 
+(** [insert tree code x] returns a tree [t] such that (1) for all codes [c], if
+    [decode tree c = y] then [decode t c = y] and (2) [decode t code = x]. *)
 let insert t code x =
   let rec aux t c = match t, c with
     | Empty     , []   -> Leaf x
